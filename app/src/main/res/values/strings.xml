@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">Itis Tasks</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="text">Text…</string>
+    <string name="first_page">First Page</string>
+    <string name="third_page">Third Page</string>
+    <string name="second_page">Second Page</string>
+    <string name="title_activity_main">MainActivity</string>
 </resources>
