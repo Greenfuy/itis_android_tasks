@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">Itis Tasks</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="phone_number">Phone number…</string>
+    <string name="questions_count">Questions count…</string>
+    <string name="start">Start!</string>
+    <string name="title_activity_fragment_holder">FragmentHolder</string>
+    <string name="question">Question</string>
+    <string name="end_the_survey">End the survey</string>
+    <string name="test_is_finished">Test is finished!</string>
 </resources>

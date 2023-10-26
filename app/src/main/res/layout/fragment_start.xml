@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.fragments.StartFragment"
+    android:background="@color/white"
+    android:clickable="true"
+    android:focusable="true">
+
+    <EditText
+        android:id="@+id/et_phone_number"
+        android:layout_width="312dp"
+        android:layout_height="64dp"
+        android:hint="@string/phone_number"
+        android:inputType="phone"
+        app:layout_constraintBottom_toTopOf="@+id/et_question_count"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:maxLength="17">
+
+    </EditText>
+
+    <EditText
+        android:layout_width="312dp"
+        android:layout_height="64dp"
+        android:id="@+id/et_question_count"
+        android:hint="@string/questions_count"
+        android:inputType="number"
+        app:layout_constraintTop_toBottomOf="@id/et_phone_number"
+        app:layout_constraintBottom_toTopOf="@+id/btn_start"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+    </EditText>
+
+    <Button
+        android:id="@+id/btn_start"
+        android:layout_width="212dp"
+        android:layout_height="64dp"
+        android:text="@string/start"
+        android:textSize="28sp"
+        android:textAllCaps="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/et_question_count">
+
+    </Button>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
