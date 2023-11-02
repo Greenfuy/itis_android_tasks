@@ -1,3 +1,16 @@
 <resources>
     <string name="app_name">Itis Tasks</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title">Title</string>
+    <string name="news_title">News Title</string>
+    <string name="desc_example">In maximus tristique lorem in ultrices. Proin consequat quis nulla a euismod. Pellentesque malesuada cursus eros, ac tristique odio placerat at. Cras tristique nisi vel ultrices commodo. Praesent nec nulla ultricies, iaculis neque non, hendrerit est. Ut auctor mi eget erat suscipit, sed finibus sem fermentum. Sed vel magna eros. Aliquam faucibus ac nulla id convallis. Mauris suscipit eu ante id fringilla. Nunc faucibus lectus nec feugiat tincidunt. Ut suscipit odio vel dui tincidunt tincidunt. Suspendisse tristique, diam at laoreet pretium, ligula eros venenatis purus, ac iaculis enim massa a dui. Integer odio elit, semper in neque vitae, pulvinar finibus ipsum. Aenean sodales vulputate metus, in hendrerit nisi gravida sed. Donec leo mi, rutrum eget leo a, facilisis feugiat nisl.</string>
+    <string name="news_app">News App</string>
+    <string name="news_count">News count…</string>
+    <string name="start">Start!</string>
+    <string name="news_count_error">News count must be between 1 and 45!</string>
+    <string name="date_example">01.10.23</string>
+    <string name="open_bottom_sheet">Open bottom sheet</string>
+    <string name="submit">Submit</string>
+    <string name="count_of_news">Count of news…</string>
+    <string name="error_news_count">News count must be between 1 and 5!</string>
 </resources>
