@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.fragments.CoroutinesFragment">
+
+    <TextView
+        android:id="@+id/tv_sb_progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/one"
+        android:textSize="16sp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/seekbar"
+        app:layout_constraintBottom_toTopOf="@id/cb_async"
+        app:layout_constraintHorizontal_chainStyle="packed">
+
+    </TextView>
+
+    <SeekBar
+        android:id="@+id/seekbar"
+        android:layout_width="256dp"
+        android:layout_height="wrap_content"
+        android:max="10"
+        android:min="1"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toEndOf="@id/tv_sb_progress"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/cb_async"
+        tools:targetApi="o">
+    </SeekBar>
+
+    <CheckBox
+        android:id="@+id/cb_async"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/async"
+        android:textSize="16sp"
+        app:layout_constraintTop_toBottomOf="@+id/seekbar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/cb_stop_on_bg">
+
+    </CheckBox>
+
+    <CheckBox
+        android:id="@+id/cb_stop_on_bg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/stop_on_background"
+        android:textSize="16sp"
+        app:layout_constraintTop_toBottomOf="@id/cb_async"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/btn_run">
+
+    </CheckBox>
+
+    <Button
+        android:id="@+id/btn_run"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:text="@string/run"
+        android:textAllCaps="false"
+        app:layout_constraintTop_toBottomOf="@id/cb_stop_on_bg"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+    </Button>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
