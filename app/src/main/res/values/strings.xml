@@ -1,3 +1,43 @@
 <resources>
     <string name="app_name">Itis Tasks</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="authorization">Authorization</string>
+    <string name="email">Email…</string>
+    <string name="submit">Submit</string>
+    <string name="register">Register</string>
+    <string name="password">Password…</string>
+    <string name="wrong_user_data">Wrong email or password</string>
+    <string name="registration">Registration</string>
+    <string name="name">Name…</string>
+    <string name="phone">Phone…</string>
+    <string name="fill_all_fields">Fill all fields</string>
+    <string name="phone_or_email_already_exists">Phone or email already exists</string>
+    <string name="log_out">Log out</string>
+    <string name="delete_account">Delete account</string>
+    <string name="phone_number_already_in_use">Phone number already in use</string>
+    <string name="film_name">Film name…</string>
+    <string name="year">Year…</string>
+    <string name="description">Description…</string>
+    <string name="add_new_film">Add new film</string>
+    <string name="year_sample">2011</string>
+    <string name="film_desc_example">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec pharetra libero posuere diam posuere sodales. Sed sit amet ullamcorper diam. In faucibus rutrum quam. Mauris gravida fringilla urna, et blandit lacus sodales id. Quisque consequat mauris in est aliquet, ac sagittis neque accumsan. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Morbi porttitor sapien risus, at tempus urna volutpat ut. Nullam pellentesque tristique dolor, quis molestie nisl sagittis ut. Quisque tellus ex, porta nec tristique vitae, viverra id quam. Aenean justo est, luctus sed semper ut, tincidunt ac dolor. Donec aliquam odio nisi, ut tempus sapien sagittis ac.</string>
+    <string name="avg_rating_example">Average Rating: 8.5</string>
+    <string name="to_profile">To Profile</string>
+    <string name="no_films">No films!</string>
+    <string name="film_added">Film added</string>
+    <string name="phone_number_changed">Phone number changed</string>
+    <string name="password_changed">Password changed</string>
+    <string name="zero">0</string>
+    <string name="account_deleted">Account deleted</string>
+    <string name="this_account_was_deleted">This account was deleted</string>
+    <string name="recover">Recover</string>
+    <string name="delete">Delete</string>
+    <string name="film_with_this_name_already_exists">Film with this name already exists</string>
+
+    <string-array name="filter_options">
+        <item>Rating ascending</item>
+        <item>Rating descending</item>
+        <item>Year ascending</item>
+        <item>Year descending</item>
+    </string-array>
 </resources>

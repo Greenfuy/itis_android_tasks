@@ -1,46 +1,55 @@
 package com.itis.itistasks
 
 import android.os.Bundle
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import com.itis.itistasks.ui.theme.ItisTasksTheme
+import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
+import com.itis.itistasks.data.CurrentUser
+import com.itis.itistasks.di.ServiceLocator
+import com.itis.itistasks.ui.fragments.AuthorizationFragment
+import com.itis.itistasks.ui.fragments.FilmsFragment
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
-class MainActivity : ComponentActivity() {
+class MainActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContent {
-            ItisTasksTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
-                ) {
-                    Greeting("Android")
-                }
+        setContentView(R.layout.activity_main)
+
+        if (savedInstanceState == null) {
+
+            if (CurrentUser.isEmpty()) {
+                supportFragmentManager.beginTransaction()
+                    .add(
+                        R.id.container, AuthorizationFragment(),
+                        AuthorizationFragment.AUTHORIZATION_FRAGMENT_TAG
+                    )
+                    .commit()
+            } else {
+                supportFragmentManager.beginTransaction()
+                    .add(
+                        R.id.container, FilmsFragment(),
+                        FilmsFragment.FILMS_FRAGMENT_TAG
+                    )
+                    .commit()
+                removeUsersIfTwoMinutesPassed(System.currentTimeMillis())
             }
         }
     }
-}
 
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
+    private fun removeUsersIfTwoMinutesPassed(currentTimeMillis: Long) {
+        val userDao = ServiceLocator.getDbInstance().getUserDao()
 
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    ItisTasksTheme {
-        Greeting("Android")
+        val sevenDaysInMillis = 7 * 24 * 60 * 60 * 1000
+
+        lifecycleScope.launch {
+            withContext(Dispatchers.IO) {
+                val usersToDelete =
+                    userDao.getUsersForDeletion(currentTimeMillis - sevenDaysInMillis)
+
+                usersToDelete?.forEach { userDao.delete(it) }
+            }
+        }
     }
 }
