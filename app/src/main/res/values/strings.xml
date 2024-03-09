@@ -1,3 +1,26 @@
 <resources>
-    <string name="app_name">Itis Tasks</string>
+    <string name="app_name">ItisTasks</string>
+
+    <string name="main_page_action_btn_text">На следующий экран</string>
+
+    <string name="text_input_phone_et_hint">Введите номер телефона</string>
+    <string name="text_input_name_et_hint">Введите имя</string>
+    <string name="text_input_second_name_et_hint">Введите фамилию</string>
+    <string name="text_input_patronymic_et_hint">Введите отчество</string>
+
+    <!-- Screen names-->
+    <string name="text_input_screen_title">Личный кабинет</string>
+
+    <!-- Menu items -->
+    <string name="main_page_edit_item">Редактировать</string>
+
+    <string name="permission_denied_pattern">Вы отклонили следующие разрешения: %1$s</string>
+    <string name="permission_denined_desc">Приложение работает некорректно,пожалуйста, предоставьте
+        разрешение через настройки</string>
+    <string name="go_to_settings">Перейти в настройки</string>
+
+    <!-- Errors -->
+    <string name="empty_weather_response">Нет данных о погоде в указанном городе</string>
+    <string name="user_not_authorized">Вы не авторизованы</string>
+    <string name="too_many_requests">Превышено количество попыток запроса</string>
 </resources>
