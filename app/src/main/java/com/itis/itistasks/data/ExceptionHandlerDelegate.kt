@@ -2,9 +2,8 @@ package com.itis.itistasks.data
 
 
 import com.itis.itistasks.R
-import com.itis.itistasks.data.exceptions.UserNotAuthorizedException
 import com.itis.itistasks.utils.ResManager
-import com.kpfu.itis.android_inception_23.data.exceptions.TooManyRequestsException
+import com.itis.itistasks.data.exceptions.TooManyRequestsException
 import retrofit2.HttpException
 
 class ExceptionHandlerDelegate(
@@ -15,9 +14,9 @@ class ExceptionHandlerDelegate(
         return when (ex) {
             is HttpException -> {
                 when (ex.code()) {
-                    401 -> {
-                        UserNotAuthorizedException(message = resManager.getString(R.string.user_not_authorized))
-                    }
+//                    401 -> {
+//                        UserNotAuthorizedException(message = resManager.getString(R.string.user_not_authorized))
+//                    }
 
                     403 -> {
                         ex

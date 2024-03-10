@@ -3,14 +3,19 @@ package com.itis.itistasks.di
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.SharedPreferences
-import androidx.room.Room
 import com.itis.itistasks.base.Keys
-import com.itis.itistasks.data.local.db.ItisTasksDatabase
-import com.itis.itistasks.data.remote.interceptors.AppIdInterceptor
-import com.itis.itistasks.utils.ResManager
 import com.itis.itistasks.data.ExceptionHandlerDelegate
+import com.itis.itistasks.data.mapper.WeatherDomainModelMapper
+import com.itis.itistasks.data.remote.OpenWeatherApi
+import com.itis.itistasks.data.remote.interceptors.AppIdInterceptor
+import com.itis.itistasks.data.repository.WeatherRepositoryImpl
+import com.itis.itistasks.domain.mapper.WeatherUiModelMapper
+import com.itis.itistasks.domain.usecase.GetWeatherDataUseCase
+import com.itis.itistasks.utils.ResManager
 import kotlinx.coroutines.Dispatchers
 import okhttp3.OkHttpClient
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 import java.lang.ref.WeakReference
 import java.security.SecureRandom
 import java.security.cert.X509Certificate
@@ -20,62 +25,50 @@ import javax.net.ssl.X509TrustManager
 
 object ServiceLocator {
 
-    private lateinit var dbInstance: ItisTasksDatabase
-
     private lateinit var itisTasksPref: SharedPreferences
 
-    //private lateinit var weatherApi: OpenWeatherApi
+    private lateinit var weatherApi: OpenWeatherApi
 
     private lateinit var okHttpClient: OkHttpClient
 
-//    private lateinit var weatherDao: WeatherDao
+    private lateinit var weatherRepository: WeatherRepositoryImpl
 
-    //private lateinit var weatherRepository: WeatherRepositoryImpl
-
-//    lateinit var getWeatherUseCase: GetWeatherDataUseCase
-//        private set
+    lateinit var getWeatherUseCase: GetWeatherDataUseCase
+        private set
 
     lateinit var exceptionHandlerDelegate: ExceptionHandlerDelegate
         private set
 
     private val dispatcher = Dispatchers.IO
 
-    //private val weatherDomainModelMapper = WeatherDomainModelMapper()
+    private val weatherDomainModelMapper = WeatherDomainModelMapper()
 
-    //private val weatherUiModelMapper = WeatherUiModelMapper()
+    private val weatherUiModelMapper = WeatherUiModelMapper()
 
     private var ctxRef: WeakReference<Context>? = null
 
-    fun provideContext(): Context {
-        return ctxRef?.get() ?: throw IllegalStateException("Context is null")
-    }
-
     fun initDataDependencies(ctx: Context) {
-        ctxRef = WeakReference(ctx)
-        dbInstance = Room.databaseBuilder(ctx, ItisTasksDatabase::class.java, "itis_tasks.db")
-            .build()
 
         itisTasksPref = ctx.getSharedPreferences("itis_tasks_pref", Context.MODE_PRIVATE)
 
         buildOkHttpClient()
-        //initWeatherApi()
+        initWeatherApi()
 
-//        weatherRepository = WeatherRepositoryImpl(
-//            weatherDao = weatherDao,
-//            api = weatherApi,
-//            domainModelMapper = weatherDomainModelMapper,
-//            resManager = ResManager(ctx = ctx),
-//        )
+        weatherRepository = WeatherRepositoryImpl(
+            api = weatherApi,
+            domainModelMapper = weatherDomainModelMapper,
+            resManager = ResManager(ctx = ctx),
+        )
 
         exceptionHandlerDelegate = ExceptionHandlerDelegate(resManager = ResManager(ctx))
     }
 
     fun initDomainDependencies() {
-//        getWeatherUseCase = GetWeatherDataUseCase(
-//            dispatcher = dispatcher,
-//            repository = weatherRepository,
-//            mapper = weatherUiModelMapper,
-//        )
+        getWeatherUseCase = GetWeatherDataUseCase(
+            dispatcher = dispatcher,
+            repository = weatherRepository,
+            mapper = weatherUiModelMapper,
+        )
     }
 
 
@@ -91,12 +84,13 @@ object ServiceLocator {
                 chain.proceed(requestBuilder.build())
             }
 
-//        if (BuildConfig.DEBUG) {
+        okHttpClient = clientBuilder.build()
+
+//        if (BuildingConfig.DEBUG) {
 //            clientBuilder.addInterceptor(HttpLoggingInterceptor().apply {
 //                level = HttpLoggingInterceptor.Level.BODY
 //            })
 //        }
-        okHttpClient = clientBuilder.build()
     }
 
     private fun createUnsafeClient(): OkHttpClient.Builder {
@@ -143,13 +137,13 @@ object ServiceLocator {
         }
     }
 
-//    private fun initWeatherApi() {
-//        val builder = Retrofit.Builder()
-//            .baseUrl(BuildConfig.OPEN_WEATHER_BASE_URL)
-//            .client(okHttpClient)
-//            .addConverterFactory(GsonConverterFactory.create())
-//            .build()
-//
-//        weatherApi = builder.create(OpenWeatherApi::class.java)
-//    }
+    private fun initWeatherApi() {
+        val builder = Retrofit.Builder()
+            .baseUrl(Keys.OPEN_WEATHER_BASE_URL)
+            .client(okHttpClient)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+
+        weatherApi = builder.create(OpenWeatherApi::class.java)
+    }
 }
